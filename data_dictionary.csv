@@ -1,0 +1,35 @@
+Table,Field,Description,Data Type,Allow Nulls
+Reports,Release Period (PK),"Unique identifier for each HCAHPS report and the date (month_year) in which the data was released (these reports are publicly reported four times each year, based on four consecutive quarters of patient surveys)",varchar(7),No
+Reports,Start Date,"Survey results from patients discharged between the ""Start Date"" and ""End Date"" are included in each report that's released.",date,No
+Reports,End Date,"Survey results from patients discharged between the ""Start Date"" and ""End Date"" are included in each report that's released.",date,No
+States,State (PK),State abbreviation for the 50 US States (plus DC - District of Columbia),varchar(2),No
+States,State Name,Full state name,nvarchar(50),No
+States,Region,Groups of states as defined by the United States Census Bureau,nvarchar(50),No
+Measures,Measure ID (PK),Unique identifier for each HCAHPS measure (measures are created from specific questions on the HCAHPS survey),nvarchar(15),No
+Measures,Measure,The measure description,nvarchar(50),No
+Measures,Type,"""Composite measures"" are made up of more than 1 survey question, while ""Individual Items"" and ""Global Items"" are tied to a single question",nvarchar(50),No
+Questions,Question Num,Question number as it appears on the HCAHPS patient survey,int,No
+Questions,Measure ID (FK),The measure each question relates to,nvarchar(15),No
+Questions,Question,The question as it appears on the survey,nvarchar(200),No
+Questions,Bottom-box Answer,The answer(s) to the question considered least positive,nvarchar(50),No
+Questions,Middle-box Answer,The answer(s) to the question considered intermediate,nvarchar(50),Yes
+Questions,Top-box Answer,The answer(s) to the question considered most positive,nvarchar(50),No
+National Results,Release Period (FK),The HCAHPS report each row relates to,varchar(7),No
+National Results,Measure ID (FK),The measure each row relates to,nvarchar(15),No
+National Results,Bottom-box Percentage,"The percentage of respondents at a national level who gave a bottom-box response to the measure in the given report (bottom-box, middle-box, and top-box percentages add up to 100 for each row)",tinyint,No
+National Results,Middle-box Percentage,"The percentage of respondents at a national level who gave a middle-box response to the measure in the given report (bottom-box, middle-box, and top-box percentages add up to 100 for each row)",tinyint,No
+National Results,Top-box Percentage,"The percentage of respondents at a national level who gave a top-box response to the measure in the given report (bottom-box, middle-box, and top-box percentages add up to 100 for each row)",tinyint,No
+State Results,Release Period (FK),The HCAHPS report each row relates to,varchar(7),No
+State Results,State (FK),The state each row relates to,varchar(2),No
+State Results,Measure ID (FK),The measure each row relates to,,No
+State Results,Bottom-box Percentage,"The percentage of respondents at the state level who gave a bottom-box response to the measure in the given report (bottom-box, middle-box, and top-box percentages add up to 100 for each row)",int,No
+State Results,Middle-box Percentage,"The percentage of respondents at the state level who gave a middle-box response to the measure in the given report (bottom-box, middle-box, and top-box percentages add up to 100 for each row)",int,No
+State Results,Top-box Percentage,"The percentage of respondents at the state level who gave a top-box response to the measure in the given report (bottom-box, middle-box, and top-box percentages add up to 100 for each row)",int,No
+Responses,Release Period (FK),The HCAHPS report each row relates to,varchar(7),No
+Responses,State (FK),The state each row relates to,varchar(2),No
+Responses,Facility ID,Unique identifier for each hospital that participated in the HCAHPS patient survey,nvarchar(15),No
+Responses,Completed Surveys,Completed surveys from patients discharges from the facility in the given report,nvarchar(50),No
+Responses,Response Rate (%),Response rate from surveys submitted to patients (as a percentage - 26 = 26%),nvarchar(50),Yes
+,,,,
+,(PK) = Primary Key,,,
+,(FK) = Foreign Key,,,
