@@ -1,1 +1,0 @@
-SELECT * FROM national_results
